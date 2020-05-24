@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1= 'Google Fit OAuth 2.0設定'
+
+	p #{content}
+	p 以下のURLにアクセスしてコードを取得して下さい．別のタブで開くことをお勧めします．
+
+	ul: li: a(href=oauthUrl) #{oauthUrl}
+
+	p 取得したコードを送信して下さい．
+	
+	p #{content}
+	form(method='get' action='')
+		input(type='text' name='code' size='70')
+		input(type='submit' name='送信')

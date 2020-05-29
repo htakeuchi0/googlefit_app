@@ -1,0 +1,25 @@
+{
+	"appenders": {
+		"system": {
+			"type": "dateFile",
+			"filename": "./log/system.log",
+			"pattern": "-yyyy-MM-dd"
+		},
+		"error_raw": {
+			"type": "dateFile",
+			"filename": "./log/error.log",
+			"pattern": "-yyyy-MM-dd"
+		},
+		"error": {
+			"type": "logLevelFilter",
+			"appender": "error_raw",
+			"level": "error"
+		}
+	},
+	"categories": {
+		"default": {
+			"appenders": [ "system", "error" ],
+			"level": "debug"
+		}
+	}
+}

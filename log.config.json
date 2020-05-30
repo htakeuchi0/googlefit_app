@@ -3,12 +3,20 @@
 		"system": {
 			"type": "dateFile",
 			"filename": "./log/system.log",
-			"pattern": "-yyyy-MM-dd"
+			"pattern": "-yyyy-MM-dd",
+			"layout": {
+				"type": "pattern",
+				"pattern": "[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] %c - %m (%f:%l:%o)" 
+			}
 		},
 		"error_raw": {
 			"type": "dateFile",
 			"filename": "./log/error.log",
-			"pattern": "-yyyy-MM-dd"
+			"pattern": "-yyyy-MM-dd",
+			"layout": {
+				"type": "pattern",
+				"pattern": "[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p] %c - %m (%f:%l:%o)" 
+			}
 		},
 		"error": {
 			"type": "logLevelFilter",
@@ -19,7 +27,8 @@
 	"categories": {
 		"default": {
 			"appenders": [ "system", "error" ],
-			"level": "debug"
+			"level": "debug",
+			"enableCallStack": true
 		}
 	}
 }

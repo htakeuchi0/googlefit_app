@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const oauth2 = require('./oauth2')
+const oauth2 = require('../lib/oauth2')
+const logger = require('../lib/logger');
 
 /** データアクセス対象 */
 const scope = [ 'https://www.googleapis.com/auth/fitness.body.write' ];
@@ -21,7 +22,7 @@ router.get('/', function(req, res, next) {
 	else {
 		// コードを取得
 		var code = req.query.code.trim()
-		console.log('CODE: ' + code)
+		logger.info('CODE: ' + code)
 
 		// OAuth2.0クライアントを取得．
 		const oauth2Client = oauth2.getOauth2client();
@@ -29,14 +30,14 @@ router.get('/', function(req, res, next) {
 		// アクセストークンを取得してアプリ内に保存．
 		oauth2Client.getToken(code, (err, tokens) => {
 			if (err) {
-				console.error('Failed to get token.');
+				logger.error('Failed to get token.');
 				return next(err);
 			}
 
 			oauth2Client.credentials = tokens;
 			
-			console.log('CREDENTIALS: ')
-			console.log(oauth2Client.credentials);
+			logger.info('CREDENTIALS: ')
+			logger.info(oauth2Client.credentials);
 
 			// アクセストークンを保存
 			access_token = oauth2Client.credentials.access_token

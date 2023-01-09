@@ -9,7 +9,7 @@
     "cookie-parser": "^1.4.5",
     "debug": "^2.6.9",
     "express": "^4.16.4",
-    "firebase-admin": "^8.12.1",
+    "firebase-admin": "^11.4.1",
     "googleapis": "^51.0.0",
     "http-errors": "^1.6.3",
     "log4js": "^6.3.0",
